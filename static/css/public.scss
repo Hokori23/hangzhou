@@ -1,0 +1,52 @@
+* {
+	margin: 0;
+	padding: 0;
+}
+
+html,
+body {
+	height: 100%;
+}
+
+[v-cloak] {
+	display: none;
+}
+
+#container {
+	position: relative;
+	height: 100%;
+	width: auto;
+	overflow: auto;
+	#img--bg {
+		position: absolute;
+		height: 100%;
+		// width: auto;
+	}
+	.popper__waker__warpper {
+		position: relative;
+		height: 100%;
+	}
+	.popper__waker {
+    position: absolute;
+    cursor: pointer;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+		&__inner {
+      position: relative;
+      display: flex;
+      align-items: center;
+			&__text {
+				font-size: 3.3vh;
+				line-height: 3.3vh;
+				width: 3.3vh;
+			}
+			&__dot {
+        transform: translateX(2.5vh);
+        width: 1.5vh;
+        height: 1.5vh;
+        background: #000;
+        border-radius: 50%;
+			}
+		}
+	}
+}

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>诗画浙江</title>
+		<link rel="stylesheet" type="text/css" href="./static/css/public.css" />
+	</head>
+	<body>
+		<section id="container" v-cloak>
+			<img id="img--bg" src="./static/img/bg.jpg" @load="getImgWidth" />
+			<div class="popper__waker__warpper" :style="{ width: width }">
+				<div
+					class="popper__waker"
+					v-for="(popper, index) in popperArr"
+          :style="popper.class"
+          :key="popper.text"
+          v-cloak
+          @click="popup(popper, index)"
+				>
+					<div class="popper__waker__inner">
+						<div class="popper__waker__inner__text">{{popper.text}}</div>
+						<div class="popper__waker__inner__dot"></div>
+					</div>
+				</div>
+			</div>
+		</section>
+	</body>
+	<script src="./static/js/vue.min.js"></script>
+	<script src="./static/js/popperArr.js"></script>
+	<script src="./static/js/public.js"></script>
+</html>
