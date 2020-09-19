@@ -93,6 +93,10 @@ body {
   border-radius: 50%;
 }
 
+#container audio {
+  display: none;
+}
+
 .popper__wrapper {
   position: fixed;
   top: 0;

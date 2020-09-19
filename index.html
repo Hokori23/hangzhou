@@ -10,43 +10,50 @@
 			href="./static/css/animate.min.css"
 		/>
 		<link rel="stylesheet" type="text/css" href="./static/css/public.css" />
-    <link rel="preload" as="image" href="./static/img/bg.png" />
-    <link rel="preload" as="image" href="./static/img/popper1.png" />
-    <link rel="preload" as="image" href="./static/img/popper2.png" />
-    <link rel="preload" as="image" href="./static/img/popper3.png" />
-    <link rel="preload" as="image" href="./static/img/popper4.png" />
-    <link rel="preload" as="image" href="./static/img/popper5.png" />
-    <link rel="preload" as="image" href="./static/img/popper6.png" />
-    <link rel="preload" as="image" href="./static/img/popper7.png" />
-    <link rel="preload" as="image" href="./static/img/popper8.png" />
-    <link rel="preload" as="image" href="./static/img/popper9.png" />
-    <link rel="preload" as="image" href="./static/img/popper10.png" />
-  </head>
+		<link rel="preload" as="image" href="./static/img/bg.png" />
+		<link rel="preload" as="image" href="./static/img/popper1.png" />
+		<link rel="preload" as="image" href="./static/img/popper2.png" />
+		<link rel="preload" as="image" href="./static/img/popper3.png" />
+		<link rel="preload" as="image" href="./static/img/popper4.png" />
+		<link rel="preload" as="image" href="./static/img/popper5.png" />
+		<link rel="preload" as="image" href="./static/img/popper6.png" />
+		<link rel="preload" as="image" href="./static/img/popper7.png" />
+		<link rel="preload" as="image" href="./static/img/popper8.png" />
+		<link rel="preload" as="image" href="./static/img/popper9.png" />
+		<link rel="preload" as="image" href="./static/img/popper10.png" />
+	</head>
 	<body>
-		<section id="container" v-cloak>
-					<img
-						id="img--bg"
-						src="./static/img/bg.png"
-						@load="getBgImgSize"
-						:class="{ isFullHeight: isFullHeight, isBlur: popperShow }"
-					/>
-					<div class="popper__waker__wrapper" :style="{ width: bg.width }">
-						<div
-							class="popper__waker"
-							v-for="(popper, index) in computedPopperArr"
-							:style="popper.class"
-							:key="popper.text"
-							v-cloak
-							@click="popupIn(index)"
-						>
-							<div class="popper__waker__inner">
-								<div class="popper__waker__inner__text">{{popper.text}}</div>
-								<div class="popper__waker__inner__dot"></div>
-							</div>
-						</div>
+		<section id="container" v-cloak @click="playMusic">
+			<img
+				id="img--bg"
+				src="./static/img/bg.png"
+				@load="getBgImgSize"
+				:class="{ isFullHeight: isFullHeight, isBlur: popperShow }"
+				ref="img--bg"
+			/>
+			<div class="popper__waker__wrapper" :style="{ width: bg.width }">
+				<div
+					class="popper__waker"
+					v-for="(popper, index) in computedPopperArr"
+					:style="popper.class"
+					:key="popper.text"
+					v-cloak
+					@click="popupIn(index)"
+				>
+					<div class="popper__waker__inner">
+						<div class="popper__waker__inner__text">{{popper.text}}</div>
+						<div class="popper__waker__inner__dot"></div>
 					</div>
+				</div>
+				<audio src="./static/bg_music.mp3" ref="audio" autoplay loop></audio>
+			</div>
 			<transition name="popper__wrapper">
-				<div class="popper__wrapper" v-show="popperShow" @click="popupOut" ref="popper__wrapper">
+				<div
+					class="popper__wrapper"
+					v-show="popperShow"
+					@click="popupOut"
+					ref="popper__wrapper"
+				>
 					<div class="popper__img">
 						<img :src="nowPopperImgSrc" />
 					</div>

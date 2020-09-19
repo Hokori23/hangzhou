@@ -1,3 +1,4 @@
+let playMusicHandler
 const vm = new Vue({
 	el: '#container',
 	computed: {
@@ -33,7 +34,7 @@ const vm = new Vue({
 	},
 	methods: {
 		getBgImgSize(e) {
-			e = e || document.querySelector('#img--bg')
+			e = e || this.$refs['img--bg']
 			const bg = e.path ? e.path[0] : e
 			if (bg.complete) {
 				this.bg.width = `${bg.width}px`
@@ -55,7 +56,7 @@ const vm = new Vue({
 
 			const bodyRadio = width / height
 			const imgRadio = parseInt(this.bg.width) / parseInt(this.bg.height)
-      this.isFullHeight = bodyRadio < imgRadio ? true : false
+			this.isFullHeight = bodyRadio < imgRadio ? true : false
 		},
 		debounce(callback, wait) {
 			let timer = null
@@ -74,19 +75,42 @@ const vm = new Vue({
 		},
 		popupOut() {
 			this.popperShow = false
-    }
+		},
+		playMusic() {
+			const audio = this.$refs.audio
+			if (!audio.paused) {
+				return
+			}
+			if (audio.readyState === 4) {
+				audio.play()
+				if (!audio.pause) {
+					window.removeEventListener('touchstart', playMusicHandler)
+				}
+			} else {
+				setTimeout(() => {
+					this.playMusic()
+				}, 1000)
+			}
+		}
 	},
 	mounted() {
+		// init
 		this.$nextTick(() => {
 			this.getBgImgSize()
+			this.playMusic()
 		})
+
+		// 绑定事件
 		window.addEventListener('resize', this.debounce(this.getBgImgSize, 50))
+		playMusicHandler = window.addEventListener('touchstart', () => {
+			this.playMusic()
+		})
+		this.$refs.popper__wrapper.addEventListener('touchmove', (e) => {
+			e.preventDefault()
+		})
 		window.onload = () => {
 			this.getBgImgSize()
 			this.containerShow = true
-    }
-    this.$refs.popper__wrapper.addEventListener('touchmove', (e) => {
-      e.preventDefault()
-    })
+		}
 	}
 })
