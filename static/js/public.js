@@ -79,7 +79,7 @@ const vm = new Vue({
 		playMusic() {
 			const audio = this.$refs.audio
 			if (!audio.paused) {
-				return
+				return window.removeEventListener('touchstart', playMusicHandler)
 			}
 			if (audio.readyState === 4) {
 				audio.play()
