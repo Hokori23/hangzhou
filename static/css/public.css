@@ -17,16 +17,44 @@ body {
   height: 100%;
   width: auto;
   overflow: auto;
+  opacity: 0;
+  -webkit-animation: fadeIn 2s;
+          animation: fadeIn 2s;
+  -webkit-animation-fill-mode: forwards;
+          animation-fill-mode: forwards;
 }
 
 #container #img--bg {
   position: absolute;
   height: 100%;
+  width: auto;
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  will-change: filter;
+  -webkit-transition: -webkit-filter 0.8s;
+  transition: -webkit-filter 0.8s;
+  transition: filter 0.8s;
+  transition: filter 0.8s, -webkit-filter 0.8s;
 }
 
-#container .popper__waker__warpper {
+#container #img--bg.isFullHeight {
+  left: 0;
+  top: 0;
+  -webkit-transform: none;
+          transform: none;
+}
+
+#container #img--bg.isBlur {
+  -webkit-filter: blur(5px);
+          filter: blur(5px);
+}
+
+#container .popper__waker__wrapper {
   position: relative;
   height: 100%;
+  margin: 0 auto;
 }
 
 #container .popper__waker {
@@ -37,6 +65,7 @@ body {
       -ms-user-select: none;
           user-select: none;
   -webkit-tap-highlight-color: transparent;
+  opacity: 0;
 }
 
 #container .popper__waker__inner {
@@ -62,5 +91,48 @@ body {
   height: 1.5vh;
   background: #000;
   border-radius: 50%;
+}
+
+.popper__wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  justify-items: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  z-index: 99999;
+  will-change: opacity;
+}
+
+.popper__wrapper-enter-active {
+  -webkit-animation: fadeIn 0.5s;
+          animation: fadeIn 0.5s;
+}
+
+.popper__wrapper-leave-active {
+  -webkit-animation: fadeOut 0.5s;
+          animation: fadeOut 0.5s;
+}
+
+.popper__wrapper .popper__img {
+  width: 100%;
+  height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  justify-items: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.popper__wrapper .popper__img img {
+  width: 100%;
 }
 /*# sourceMappingURL=public.css.map */
