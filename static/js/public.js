@@ -4,7 +4,7 @@ const vm = new Vue({
 		computedPopperArr() {
 			const width = parseInt(this.bg.width)
 			const height = parseInt(this.bg.height)
-			let item = this.popperArr.map((item) => {
+			return this.popperArr.map((item) => {
 				return {
 					...item,
 					class: {
@@ -13,8 +13,6 @@ const vm = new Vue({
 					}
 				}
 			})
-			console.log(item)
-			return item
 		}
 	},
 	data: {
@@ -76,7 +74,7 @@ const vm = new Vue({
 		},
 		popupOut() {
 			this.popperShow = false
-		}
+    }
 	},
 	mounted() {
 		this.$nextTick(() => {
@@ -86,6 +84,9 @@ const vm = new Vue({
 		window.onload = () => {
 			this.getBgImgSize()
 			this.containerShow = true
-		}
+    }
+    this.$refs.popper__wrapper.addEventListener('touchmove', (e) => {
+      e.preventDefault()
+    })
 	}
 })

@@ -79,7 +79,10 @@ body {
 	justify-items: center;
 	align-items: center;
 	z-index: 99999;
-	will-change: opacity;
+  will-change: opacity;
+  overflow: hidden;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior: contain;
 
 	&-enter-active {
 		animation: fadeIn 0.5s;

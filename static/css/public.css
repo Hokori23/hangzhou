@@ -108,6 +108,9 @@ body {
           align-items: center;
   z-index: 99999;
   will-change: opacity;
+  overflow: hidden;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior: contain;
 }
 
 .popper__wrapper-enter-active {

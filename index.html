@@ -46,7 +46,7 @@
 						</div>
 					</div>
 			<transition name="popper__wrapper">
-				<div class="popper__wrapper" v-show="popperShow" @click="popupOut">
+				<div class="popper__wrapper" v-show="popperShow" @click="popupOut" ref="popper__wrapper">
 					<div class="popper__img">
 						<img :src="nowPopperImgSrc" />
 					</div>
