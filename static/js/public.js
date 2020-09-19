@@ -7,7 +7,7 @@ const vm = new Vue({
 			const height = parseInt(this.bg.height)
 			return this.popperArr.map((item) => {
 				return {
-					...item,
+					text: item.text,
 					class: {
 						left: `${item.class.left * 0.01 * width}px`,
 						bottom: `${item.class.bottom * 0.01 * height}px`
@@ -65,7 +65,7 @@ const vm = new Vue({
 					clearTimeout(timer)
 				}
 				timer = setTimeout(() => {
-					callback(null)
+					callback()
 				}, wait)
 			}
 		},
